@@ -1,0 +1,8 @@
+<div class="btn-group">
+    <button data-placement="left" data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="false">Options</button>
+    <ul class="dropdown-menu">
+        {% for url in urls %}
+            {{ url }}
+        {% endfor %}
+    </ul>
+</div>
