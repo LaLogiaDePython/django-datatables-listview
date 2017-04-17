@@ -43,7 +43,15 @@ class DatatablesListView:
         setup the fields
         """
         if self.fields is None:
-            return [field.name for field in self.model._meta.get_field_names()]
+            if self.model:
+                return [field.name for field in self.model._meta.get_fields()]
+            else:
+                raise ImproperlyConfigured(
+                    "%(cls)s is missing a Model. Define "
+                    "%(cls)s.model" % {
+                        'cls': self.__class__.__name__
+                    }
+                )
         else:
             return self.fields
 
