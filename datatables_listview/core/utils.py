@@ -20,11 +20,13 @@ def generate_q_objects_by_fields_and_words(fields, search_text):
         for word in search_text:
             if field.choices:
                 # Build a dict with the dictionary to do search by choices display
-                field_choices = {key.lower(): value for key, value in field.choices}
+                # This dictionary takes the value (display of the choices) as key and the internal representation as
+                # value
+                field_choices = {value.lower(): key for key, value in field.choices}
                 # Search if the searched word exists in the field choices
-                display_to_value = field_choices.get(word.lower(), "")
-                if display_to_value:
-                    search_criteria = {field.name: display_to_value}
+                value_coincidences = [value for key, value in field_choices.items() if word.lower() in key]
+                if value_coincidences:
+                    search_criteria = {"%s__in" % field.name: value_coincidences}
                     q.add(
                         Q(**search_criteria),
                         Q.OR
