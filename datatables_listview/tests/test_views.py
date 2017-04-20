@@ -105,7 +105,7 @@ class TestDatatablesListView(TestCase):
         Test for the 'filter_by_search_text' method of the view
         """
         self.view.model = TestPerson
-        self.view.fields = ['name', 'birth_date', 'gender', 'id']
+        self.view.fields = ['name', 'birth_date', 'gender', 'id', 'dog']
         tested_method = self.view.filter_by_search_text
         # Normal case searching for a unique coincidence
         method_result = tested_method(self.view.get_queryset(), "Name3")
@@ -140,3 +140,9 @@ class TestDatatablesListView(TestCase):
         # icontains choices display test
         method_result = tested_method(self.view.get_queryset(), "FeMa")
         self.assertTrue(method_result.exists())
+
+        # Multiple words search test
+        method_result = tested_method(self.view.get_queryset(), "Search with multiple words")
+        self.assertFalse(method_result.exists())
+        method_result = tested_method(self.view.get_queryset(), "Search with found coincidence insensitive case aMe1")
+        self.assertEqual(method_result.count(), 2)
