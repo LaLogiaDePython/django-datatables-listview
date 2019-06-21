@@ -62,17 +62,14 @@ $(document).ready(function () {
     // Columns definition
     var columns = column_defs;
 
-    if(opciones){
+    if(options){
         columns.push({"title": "Options", "targets": columns.length, "orderable": false, "searchable":false});
     }
 
     //==========================================================================================================
 
-    $("#datatable-rady").DataTable({
+    $("#datatable-view").DataTable({
         dom: '<"html5buttons"B>lTfgitp',
-        language: {
-            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-        },
         responsive: true,
         bAutoWidth: false,
         pageLength: 10,

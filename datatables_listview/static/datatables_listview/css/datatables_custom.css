@@ -1,0 +1,45 @@
+span.dtr-title{
+    vertical-align: top;
+}
+table.dataTable>tbody>tr.child ul.dropdown-menu{
+    display: none;
+}
+table.dataTable>tbody>tr.child .open > ul.dropdown-menu{
+    display: block;
+}
+table .dropdown-menu{
+    left: inherit;
+    right: 0;
+}
+.html5buttons {
+    float: right;
+}
+
+.dataTables_length {
+    float: left;
+}
+
+.dataTables_filter label {
+    margin-right: 5px;
+}
+
+@media (max-width: 420px) {
+    #datatable-view_filter {
+        text-align: center;
+    }
+     .html5buttons, #datatable-view_length, #datatable-view_filter {
+         float: none;
+     }
+}
+
+#datatable-view_info {
+    white-space: initial;
+}
+
+.btn:not(.button-modals-core), .btn-group{
+    margin: 0 !important;
+}
+
+.container{
+    width: 95%;
+}

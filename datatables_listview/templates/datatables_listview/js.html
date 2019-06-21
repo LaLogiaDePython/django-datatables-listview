@@ -1,0 +1,9 @@
+{% load static %}
+{{ column_defs|json_script:'column-def' }}
+<script type="text/javascript">
+let column_defs = JSON.parse(document.getElementById('column-def').textContent);
+let options = {{ show_options|yesno:"true,false" }}
+</script>
+<script src="{% static 'datatables_listview/js/datatables.min.js' %}"></script>
+<script src="{% static 'datatables_listview/js/datatables_pipeline.js' %}"></script>
+<script src="{% static 'datatables_listview/js/generate_datatable.js' %}"></script>
