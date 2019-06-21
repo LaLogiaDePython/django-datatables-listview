@@ -1,16 +1,15 @@
 {% if confirm_modal %}
-    <li>
+    <li class="dropdown-item">
         <a data-toggle="modal" data-target="#{{ confirm_modal }}" href="#" data-url="{{ url }}" onclick="urlModal(this,'{{ confirm_modal }}');" class="font-bold"><i class="fa {{ icon }}"></i> {{ name }}</a>
         {% if tooltip %}<i class="fa fa-question-circle add-tooltip" data-toggle="tooltip" title="{{ tooltip }}"></i>{% endif %}
     </li>
 {% elif object_modal %}
-    <li><a href="#" data-toggle="modal" data-target="#{{ object_modal }}-{{ object.id }}"><i class="fa {{ icon }}"></i> {{ name }}</a>{% if tooltip %}<i class="fa fa-question-circle add-tooltip" data-toggle="tooltip" title="{{ tooltip }}"></i>{% endif %}
+
+    <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#{{ object_modal }}-{{ object.id }}"><i class="fa {{ icon }}"></i> {{ name }}</a>{% if tooltip %}<i class="fa fa-question-circle add-tooltip" data-toggle="tooltip" title="{{ tooltip }}"></i>{% endif %}
     {% with "datatables_tools/"|add:object.get_model_name|lower|add:"_modal.html" as template_object %}
         {% include template_object %}
     {% endwith %}</li>
 {% else %}
-   <li>
-       <a href="{{ url }}" class="font-bold"><i class="fa {{ icon }}"></i> {{ name }}</a>
+       <a href="{{ url }}" class="dropdown-item font-bold" target="_blank"><i class="fa fa-{{ icon }}"></i> {{ name }}</a>
        {% if tooltip %}<i class="fa fa-question-circle add-tooltip" data-toggle="tooltip" title="{{ tooltip }}"></i>{% endif %}
-   </li>
 {% endif %}
